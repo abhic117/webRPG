@@ -85,12 +85,18 @@ const locations = [
         "button functions": [goTown, goTown, goTown],
         text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
     },
-    /*{
+    {
         name: "lose",
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
         "button functions": [restart, restart, restart],
         text: "You die."
-    }*/
+    },
+    {
+        name: "win",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button functions": [restart, restart, restart],
+        text: "You defeat the dragon. You win the game!"
+    }
 ];
 
 // initialize buttons
@@ -207,7 +213,7 @@ function attack() {
         lose();
     }
     else if (monsterHealth <= 0) {
-        defeatMonster();
+        fighting === 2 ? winGame() : defeatMonster();
     }
 }
 
@@ -225,6 +231,10 @@ function defeatMonster() {
 
 function lose() {
     update(locations[5]);
+}
+
+function winGame() {
+    update(locations[6]);
 }
 
 function restart() {
